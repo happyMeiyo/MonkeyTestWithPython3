@@ -1,0 +1,2 @@
+# androidMonkeyTest
+python实现的monkey测试脚本
