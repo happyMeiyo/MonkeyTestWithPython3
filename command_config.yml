@@ -1,5 +1,0 @@
-app_name:
-    packageName: com.****
-    throttle: 500
-    seed: 2000
-    count: 10000
