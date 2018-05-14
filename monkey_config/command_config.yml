@@ -1,0 +1,35 @@
+#-------------------------------------------------
+#   File Name：     command_config
+#   Description :
+#   Author :        Meiyo
+#   date：          2018/5/7 17:56
+#-------------------------------------------------
+#   Change Activity:
+#                   2018/5/7:
+#------------------------------------------------- 
+CaibaoLM_dev:
+    packageName: com.caibaolm.d
+    seed: 2000
+    count: 10000
+
+
+CaibaoLM_prod:
+    packageName: com.caibaolm
+    seed: 2000
+    count: 10000
+
+
+
+Caibao_dev:
+    packageName: com.ziyuanpai.caibao.d
+    throttle: 500
+    seed: 2000
+    count: 10000
+
+Caibao_prod:
+    packageName: com.ziyuanpai.caibao
+    seed: 2000
+    count: 10000
+
+
+
