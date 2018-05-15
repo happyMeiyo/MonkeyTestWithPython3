@@ -77,8 +77,7 @@ def start_monkey(file_name, app_name):
     """
     devices = get_devices()
     if not devices:
-        print("未获取到设备")
-        exit(0)
+        raise SystemExit('未获取到设备!')
 
     command = get_monkey_command(file_name, app_name)
     # command = 'adb -s ' + ''.join(devices) + ' shell ' + "\"" + command + "\""
