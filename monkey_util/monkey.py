@@ -18,7 +18,6 @@ from monkey_util.device_manage import get_devices, get_monkey_pid, stop_monkey_p
 import yaml
 import io
 import os
-import logging
 import datetime
 
 
@@ -28,13 +27,11 @@ def check_format(file_path, content):
     if not content:
         # testcase file content is empty
         err_msg = u"Testcase file content is empty: {}".format(file_path)
-        logging.error(err_msg)
         raise FileNotFoundError
 
     elif not isinstance(content, (list, dict)):
         # testcase file content does not match testcase format
         err_msg = u" file content format invalid: {}".format(file_path)
-        logging.error(err_msg)
         raise Exception(err_msg)
 
 
@@ -82,7 +79,6 @@ def start_monkey(file_name, app_name):
     command = get_monkey_command(file_name, app_name)
     # command = 'adb -s ' + ''.join(devices) + ' shell ' + "\"" + command + "\""
     command = 'adb -s ' + ''.join(devices) + ' shell ' + command
-    logging.info(command)
     print(command)
 
     os.popen(command)
@@ -94,9 +90,9 @@ def stop_moneky(device_id):
     monkey_pid = get_monkey_pid()
     if not monkey_pid:
         stop_monkey_pid(monkey_pid)
-        logging.info("关闭" + device_id + "monkey")
+        print("关闭" + device_id + "的monkey进程")
     else:
-        logging.info("没有正在执行的monkey")
+        print("没有正在执行的monkey")
 
 
 if __name__ == '__main__':

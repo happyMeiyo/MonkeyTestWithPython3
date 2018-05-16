@@ -19,8 +19,7 @@ from monkey_util.device_manage import get_devices
 
 devices = get_devices()
 if not devices:
-    print("未获取到设备")
-    exit(0)
+    raise SystemExit('未获取到设备!')
 
 for each in devices:
     stop_moneky(each)
