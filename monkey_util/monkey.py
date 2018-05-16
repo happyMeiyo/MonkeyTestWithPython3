@@ -19,6 +19,7 @@ import yaml
 import io
 import os
 import datetime
+import subprocess
 
 
 def check_format(file_path, content):
@@ -49,7 +50,7 @@ def get_monkey_command(file_name, app):
     """
     monkey_command = 'monkey -p '
 
-    file_path = os.path.join(os.getcwd() + '\monkey_config', file_name)
+    file_path = os.path.join(os.getcwd() + '/monkey_config', file_name)
     file_content = load_yaml_file(file_path)
 
     try:
@@ -61,7 +62,9 @@ def get_monkey_command(file_name, app):
         monkey_command = monkey_command + str(command_config.get('count', 10000))
         # the path of log file
         # monkey_command = monkey_command + ' > ' + '/sdcard/monkeylog.txt'
-        monkey_command = (monkey_command + ' > ' + os.getcwd() + '\log\monkeylog_'
+        log_file_path = os.path.abspath(os.path.join(os.getcwd(), 'log'))
+        log_file_name = '\monkeyLog_'
+        monkey_command = (monkey_command + ' > ' + log_file_path + log_file_name
                           + datetime.datetime.now().strftime("%Y_%m_%d_%H_%M_%S") + '.txt')
 
         return monkey_command
@@ -81,14 +84,17 @@ def start_monkey(file_name, app_name):
     command = 'adb -s ' + ''.join(devices) + ' shell ' + command
     print(command)
 
-    os.popen(command)
+    # subprocess.Popen(command, shell=True)
+    subprocess.run(command, shell=True)
+    # subprocess.call(command, shell=True)
+    # os.popen(command)
 
 
 def stop_moneky(device_id):
     """ stop running monkey
     """
     monkey_pid = get_monkey_pid()
-    if not monkey_pid:
+    if monkey_pid:
         stop_monkey_pid(monkey_pid)
         print("关闭" + device_id + "的monkey进程")
     else:

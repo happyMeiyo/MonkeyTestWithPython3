@@ -14,7 +14,7 @@
 """
 __author__ = 'Meiyo'
 
-import os
+import subprocess
 
 
 # 执行adb命令
@@ -22,10 +22,12 @@ def call_adb(command):
     command_text = 'adb %s' % command
     print(command_text)
 
-    with os.popen(command_text, "r") as result:
-        command_result = result.read()
+    result = subprocess.check_output(command_text).decode('utf')
 
-    return command_result
+    # with os.popen(command_text, "r") as result:
+    #     command_result = result.read()
+
+    return result
 
 
 # 获取连接设备
