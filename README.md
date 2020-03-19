@@ -1,2 +1,2 @@
-# androidMonkeyTest
-python实现的monkey测试脚本
+# MonkeyTestWithPython3
+基于python3实现的monkey测试脚本
